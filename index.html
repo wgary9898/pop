@@ -326,6 +326,13 @@ document.querySelectorAll(".action-btn").forEach(btn => {
 /* Auto page switch after 15 sec */
 
 setTimeout(showSecondPage, 15000);
+
+/* ================= BLOCK RIGHT CLICK ================= */
+
+// Disable right-click context menu
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
 </script>
 
 </body>
