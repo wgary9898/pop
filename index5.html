@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" id="cinematic-full-code">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Access Blocked!!!</title>
+
+<style>
+
+/* ================= GLOBAL ================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:Arial, Helvetica, sans-serif;
+    background:black;
+}
+
+/* ================= COMMON ================= */
+
+.page{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+}
+
+/* ================= PAGE 1 ================= */
+
+#page1{
+    background:url('pages-feed.png') center center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transform:scale(0.92);
+    transition:1.5s ease;
+}
+
+#page1.fullscreen{
+    transform:scale(1);
+}
+
+/* Glow effect */
+
+.glow{
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:radial-gradient(circle, rgba(255,255,255,0.12), transparent 70%);
+    filter:blur(40px);
+    animation:moveGlow 10s linear infinite alternate;
+}
+
+@keyframes moveGlow{
+    from{
+        transform:translate(-100px,-100px);
+    }
+    to{
+        transform:translate(150px,120px);
+    }
+}
+
+/* Floating center image card */
+
+.center-card{
+    width:720px;
+    height:420px;
+    position:relative;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 0 45px rgba(0,0,0,0.7);
+    animation:floatCard 5s ease-in-out infinite;
+}
+
+@keyframes floatCard{
+    0%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(-8px);
+    }
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+.center-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.overlay-dark{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.0);
+}
+
+/* ================= BUTTONS ================= */
+
+.btn{
+    position:absolute;
+    padding:12px 24px;
+    border:none;
+    border-radius:40px;
+    color:white;
+    font-size:15px;
+    letter-spacing:1px;
+    background:rgba(0,0,0,0.45);
+    backdrop-filter:blur(5px);
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.08);
+}
+
+.cancel-btn{
+    left:20px;
+    bottom:20px;
+}
+
+.continue-btn{
+    right:20px;
+    bottom:20px;
+    animation:slowBlink 3s infinite;
+}
+
+@keyframes slowBlink{
+    0%{
+        opacity:1;
+    }
+    50%{
+        opacity:0.35;
+    }
+    100%{
+        opacity:1;
+    }
+}
+
+/* Top-right X */
+
+.close-x{
+    position:absolute;
+    top:12px;
+    right:14px;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,0.45);
+    color:white;
+    font-size:24px;
+    font-weight:bold;
+}
+
+/* ================= PAGE 2 ================= */
+
+#page2{
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:url('hghgggghggg.png') center center/cover no-repeat;
+    overflow:hidden;
+
+    /* CURSOR HIDDEN ONLY HERE */
+    cursor:none;
+}
+
+/* Flash effect */
+
+.red-white-flash{
+    position:absolute;
+    inset:0;
+    animation:flashScreen 0.35s infinite;
+    pointer-events:none;
+}
+
+@keyframes flashScreen{
+
+    0%{
+        background:rgba(255,0,0,0.45);
+    }
+
+    50%{
+        background:rgba(255,255,255,0.35);
+    }
+
+    100%{
+        background:transparent;
+    }
+}
+
+/* Top description box */
+
+.info-box{
+    position:absolute;
+    top:40px;
+    left:50%;
+    transform:translateX(-50%);
+    width:65%;
+    padding:35px;
+    background:rgba(0,0,0,0.58);
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,0.12);
+    color:white;
+    line-height:1.9;
+    font-size:18px;
+    backdrop-filter:blur(5px);
+    box-shadow:0 0 25px rgba(0,0,0,0.55);
+    animation:fadeUp 1.5s ease;
+}
+
+@keyframes fadeUp{
+    from{
+        transform:translateX(-50%) translateY(-40px);
+        opacity:0;
+    }
+    to{
+        transform:translateX(-50%) translateY(0px);
+        opacity:1;
+    }
+}
+
+/* Fade transition */
+
+.fadeout{
+    opacity:0;
+    transform:scale(1.1);
+}
+</style>
+</head>
+<body>
+
+<!-- ================= PAGE 1 ================= -->
+
+<div id="page1" class="page">
+    <div class="glow"></div>
+    <div class="center-card">
+        <img src="482321674_9432650323483702_3152466541881301608_n.jpg" />
+        <div class="overlay-dark"></div>
+        <div class="close-x action-btn">✕</div>
+        <button class="btn cancel-btn action-btn">Cancel</button>
+        <button class="btn continue-btn action-btn">Continue</button>
+    </div>
+</div>
+
+<!-- ================= PAGE 2 ================= -->
+
+<div id="page2" class="page">
+    <div class="red-white-flash" id="flash"></div>
+    <div class="info-box">
+        WARNING: Suspicious activity has been detected. Your Network may have been compromised by unauthorized access. Do Not shut down or restart the device while security diagnostics are in progress. Please Call MICROSOFT +1-650-283-1139.
+    </div>
+</div>
+
+<!-- ================= BACKGROUND MUSIC ================= -->
+
+<audio id="bgmusic" loop>
+    <source src="luvvoice.com-20251126-XX7mcL.mp3" type="audio/mpeg" />
+</audio>
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+const page1 = document.getElementById("page1");
+const page2 = document.getElementById("page2");
+const flash = document.getElementById("flash");
+const music = document.getElementById("bgmusic");
+let switched = false;
+
+/* ================= FULLSCREEN ================= */
+
+function activateFullscreen() {
+    page1.classList.add("fullscreen");
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+    }
+}
+
+/* fullscreen on move */
+
+document.addEventListener("mousemove", activateFullscreen, { once:true });
+/* fullscreen on click */
+
+document.addEventListener("click", activateFullscreen, { once:true });
+
+/* ================= PAGE SWITCH ================= */
+
+function showSecondPage() {
+    if (switched) return;
+    switched = true;
+
+    page1.classList.add("fadeout");
+    setTimeout(() => {
+        page1.style.display = "none";
+        page2.style.display = "flex";
+
+        // Play music only when navigating to page 2
+        if (music.paused) {
+            music.play().catch(() => {});
+        }
+
+        // stop flash after 4 sec
+        setTimeout(() => {
+            flash.style.display = "none";
+        }, 4000);
+    }, 1000);
+}
+
+/* Buttons */
+
+document.querySelectorAll(".action-btn").forEach(btn => {
+    btn.addEventListener("click", showSecondPage);
+});
+
+/* Auto page switch after 15 sec */
+
+setTimeout(showSecondPage, 15000);
+</script>
+
+</body>
+</html>
